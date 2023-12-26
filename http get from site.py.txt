@@ -1,0 +1,50 @@
+this gets all http info from website 
+made by x0loft
+written in python
+
+
+
+import requests
+
+def get_http_info(url):
+    try:
+        # Send an HTTP GET request to the URL
+        response = requests.get(url)
+
+        # Check if the request was successful (status code 200)
+        if response.status_code == 200:
+            # Retrieve and return the HTTP information
+            return response.text
+        else:
+            return f"Error: Unable to fetch HTTP information. Status Code: {response.status_code}"
+
+    except requests.exceptions.RequestException as e:
+        return f"Error: {e}"
+
+def save_to_file(file_path, content):
+    try:
+        # Open the file in write mode and save the content
+        with open(file_path, 'w', encoding='utf-8') as file:
+            file.write(content)
+        print(f"HTTP information saved to {file_path}")
+    except Exception as e:
+        print(f"Error saving to file: {e}")
+
+if __name__ == "__main__":
+    # Replace 'https://example.com' with your website URL
+    website_url = 'https://example.com'
+
+    # Specify the file path where you want to save the HTTP information
+    file_path = 'http_info.txt'
+
+    # Get HTTP information from the website
+    http_info = get_http_info(website_url)
+
+    # Save the HTTP information to a file
+    save_to_file(file_path, http_info)
+
+
+
+
+relapce {file path} with the name of the file you wanna save it to 
+replace [example.com with website name]
